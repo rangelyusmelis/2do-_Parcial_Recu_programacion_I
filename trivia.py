@@ -21,7 +21,7 @@ trivia_mix = pygame.image.load(
     "C:/Users/ryusm/OneDrive/Desktop/Programacion 08/2do-_Parcial_Recu_programacion_I/trivia_mix.png")
 
 # escalar la imagen
-trivia_mix = pygame.transform.scale(trivia_mix, (100, cd100))
+trivia_mix = pygame.transform.scale(trivia_mix, (100, 100))
 
 # colores
 
