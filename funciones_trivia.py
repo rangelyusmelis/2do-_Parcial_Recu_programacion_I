@@ -31,51 +31,6 @@ def leer_csv_preguntas(nombre_archivo: str, lista_preguntas: list) -> bool:
         print("no se pudo leer el archivo")
     return retorno
 
-# def crear_cabezera (lista: list, separador: str):
-#     lista_claves = list(lista[0].keys())
-#     cabezera = separador.join(lista_claves)
-#     return cabezera
-
-# def crear_dato_csv (diccionario: dict, separador: str):
-#     lista_valores = list(diccionario.values())
-#     for i in range(len(lista_valores)):
-#         lista_valores[i] = str (lista_valores[i])
-#     dato = separador.join(lista_valores)
-#     return dato
-
-# def guardar_csv(nombre_archivo:str, lista: list)-> bool:
-#     if type(lista) == list and len(lista) > 0:
-#         cabezera = crear_cabezera(lista[0], ",")
-#         with open(nombre_archivo,"w") as archivo:
-#             archivo.write (cabezera + "\n")
-#             for diccionario in lista:
-#                 linea = crear_dato_csv(diccionario, ",")
-#                 archivo.write(linea +"\n")
-#         retorno = True
-#     else:
-#         retorno = False
-#     return retorno
-
-
-# def leer_json( nombre_archivo: str, lista:list) -> bool:
-#     if os.path.exists(nombre_archivo):
-#         lista.clear()
-#         with open(nombre_archivo, "r") as archivo:
-#             lista.extend(json.load(archivo))
-#             retorno: True
-#     else:
-#         retorno = False
-#     return retorno
-
-# def generar_json (nombre_archivo:str, lista: list)-> bool:
-#     if type(lista) == list and len(lista) > 0:
-#         with open(nombre_archivo,"w") as archivo:
-#             json.dump(lista, archivo, ident = 4)
-#             retorno= True
-#     else:
-#             retorno= False
-#     return retorno
-
 
 def limpiar_consola():
     input(" presione una tecla para continuar)")
@@ -197,7 +152,8 @@ def mostrar_rankings(lista_rankings: list) -> bool:
     if len(lista_rankings) > 0:
         print(f"Nombre          Puntuacion          Fecha")
         for ranking in lista_rankings:
-            print(f"{ranking["nombre"]}          {ranking["puntuacion"]}           {ranking["fecha"]}")
+            print(f"{ranking["nombre"]}          {
+                  ranking["puntuacion"]}           {ranking["fecha"]}")
         return True
     else:
         return False
