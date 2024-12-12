@@ -1,39 +1,203 @@
 import os
+import random
 import json
+from datetime import datetime
+from Constantes import *
 
-#PARSER -> Conversion 
-#Pasar del archivo CSV a una lista de diccionarios (todos str)
-#La cabecera del csv se van a convertir en las claves de mi diccionario
 
-def obtener_claves(archivo,separador:str) -> list:
-    primer_linea = archivo.readline()
-    primer_linea = primer_linea.replace("\n","")
-    lista_claves = primer_linea.split(separador)
-    
-    return lista_claves
+def crear_diccionario_item(lista_valores: list) -> dict:
+    item_cuestionario = {}
+    item_cuestionario["pregunta"] = lista_valores[0]
+    item_cuestionario["opcion 1"] = lista_valores[1]
+    item_cuestionario["opcion 2"] = lista_valores[2]
+    item_cuestionario["opcion 3"] = lista_valores[3]
+    item_cuestionario["opcion 4"] = lista_valores[4]
+    item_cuestionario["respuesta correcta"] = int(lista_valores[5])
+    return item_cuestionario
 
-def obtener_valores(linea,separador:str) -> list:
-    linea_aux = linea.replace("\n","")
-    lista_valores = linea_aux.split(separador)
-    return lista_valores
 
-def crear_diccionario(lista_claves:list,lista_valores:list) -> dict:
-    diccionario_aux = {} #Alumno/Usuario/Heroe/Etc
-    for i in range(len(lista_claves)):
-        diccionario_aux[lista_claves[i]] = lista_valores[i]
-        
-    return diccionario_aux
-
-#Siempre va a generar una lista de sólo strings, hay que convertir los numericos en otra función propia
-def parse_csv(lista_elementos,nombre_archivo:str) -> bool: 
+def leer_csv_preguntas(nombre_archivo: str, lista_preguntas: list) -> bool:
     if os.path.exists(nombre_archivo):
-        with open(nombre_archivo,"r") as archivo:
-            lista_claves = obtener_claves(archivo,",")
+        with open(nombre_archivo, "r", encoding="utf-8", errors="ignore") as archivo:
+            archivo.readline()
             for linea in archivo:
-                lista_valores = obtener_valores(linea,",")
-                diccionario_aux = crear_diccionario(lista_claves,lista_valores) #Alumno/Usuario/Heroe/Etc
-                lista_elementos.append(diccionario_aux)        
+                linea_aux = linea.replace("\n", "")
+                lista_valores = linea_aux.split(",")
+                item_cuestionario_aux = crear_diccionario_item(lista_valores)
+                lista_preguntas.append(item_cuestionario_aux)
+                retorno = True
+    else:
+        retorno = False
+        print("no se pudo leer el archivo")
+    return retorno
+
+# def crear_cabezera (lista: list, separador: str):
+#     lista_claves = list(lista[0].keys())
+#     cabezera = separador.join(lista_claves)
+#     return cabezera
+
+# def crear_dato_csv (diccionario: dict, separador: str):
+#     lista_valores = list(diccionario.values())
+#     for i in range(len(lista_valores)):
+#         lista_valores[i] = str (lista_valores[i])
+#     dato = separador.join(lista_valores)
+#     return dato
+
+# def guardar_csv(nombre_archivo:str, lista: list)-> bool:
+#     if type(lista) == list and len(lista) > 0:
+#         cabezera = crear_cabezera(lista[0], ",")
+#         with open(nombre_archivo,"w") as archivo:
+#             archivo.write (cabezera + "\n")
+#             for diccionario in lista:
+#                 linea = crear_dato_csv(diccionario, ",")
+#                 archivo.write(linea +"\n")
+#         retorno = True
+#     else:
+#         retorno = False
+#     return retorno
+
+
+# def leer_json( nombre_archivo: str, lista:list) -> bool:
+#     if os.path.exists(nombre_archivo):
+#         lista.clear()
+#         with open(nombre_archivo, "r") as archivo:
+#             lista.extend(json.load(archivo))
+#             retorno: True
+#     else:
+#         retorno = False
+#     return retorno
+
+# def generar_json (nombre_archivo:str, lista: list)-> bool:
+#     if type(lista) == list and len(lista) > 0:
+#         with open(nombre_archivo,"w") as archivo:
+#             json.dump(lista, archivo, ident = 4)
+#             retorno= True
+#     else:
+#             retorno= False
+#     return retorno
+
+
+def limpiar_consola():
+    input(" presione una tecla para continuar)")
+    os.system("cls")
+
+
+def pedir_numero(mensaje: str, mensaje_error: str, min: int, max: int) -> int:
+    while True:
+        numero = input(mensaje)
+        if numero.isdigit():
+            numero = int(numero)
+            if numero <= max and numero >= min:
+                return numero
+            else:
+                print(f"error el numero deberia de estar entre {min} y {max}")
+        else:
+            print(mensaje_error)
+
+
+def ejecutar_menu():
+    print("PREGUNTADOS\n 1- Jugar \n 2- Fin de la Partida \n 3- top 10 partidas")
+    return pedir_numero("ingrese el numero de la opcion deseada ", "error en el numero ingresado", 1, 3)
+
+
+def mostrar_pregunta(pregunta_juego: dict) -> None:
+    print(f"Pregunta: {pregunta_juego["pregunta"]}")
+    print(f"1: {pregunta_juego["opcion 1"]}")
+    print(f"2: {pregunta_juego["opcion 2"]}")
+    print(f"3: {pregunta_juego["opcion 3"]}")
+    print(f"4: {pregunta_juego["opcion 4"]}")
+
+
+def mezclar_lista(lista_preguntas: list) -> None:
+    random.shuffle(lista_preguntas)
+
+
+def jugar_preguntados_por_consola(datos_juego: dict, lista_preguntas) -> None:
+    contador_respuestas_correctas = 0
+    indice = 0
+    while datos_juego["vidas"] != 0:
+
+        if contador_respuestas_correctas == 5:
+            modificar_vidas(datos_juego, 1)
+            contador_respuestas_correctas = 0
+
+        print(f"PUNTUACION ACTUAL: {datos_juego['puntuacion']}")
+        print(f"VIDAS RESTANTES: {datos_juego["vidas"]}")
+
+        if indice == len(lista_preguntas):
+            indice = 0
+            mezclar_lista[lista_preguntas]
+
+        pregunta_actual = lista_preguntas[indice]
+        mostrar_pregunta(pregunta_actual)
+        respuesta = pedir_numero(
+            "su respuesta: ", "reingrese la respuesta: (entre 1 y 4)", 1, 4)
+        if verificar_respuesta(datos_juego, pregunta_actual, respuesta):
+            print("RESPUESTA CORRECTA")
+            contador_respuestas_correctas += 1
+        else:
+            print("RESPUESTA INCORRECTA")
+            contador_respuestas_correctas = 0
+        indice += 1
+
+        limpiar_consola()
+
+
+def verificar_respuesta(datos_juego: dict, pregunta_actual: dict, respuesta: int) -> bool:
+    if respuesta == pregunta_actual["respuesta correcta"]:
+        datos_juego['puntuacion'] += PUNTUACION_ACIERTO
+        retorno = True
+    else:
+        datos_juego["vidas"] -= 1
+        datos_juego['puntuacion'] -= PUNTUACION_ERROR
+        print(f"la respuesta correcta es la {
+              pregunta_actual["respuesta correcta"]}")
+        retorno = False
+    return retorno
+
+
+def reiniciar_estadisticas(datos_juego: dict):
+    datos_juego["puntuacion"] = 0
+    datos_juego["vidas"] = CANTIDAD_VIDAS
+
+
+def modificar_vidas(datos_juego: dict, vida_nueva: int):
+    datos_juego["vidas"] += vida_nueva
+
+
+def guardar_puntuacion_lista(lista_rankings: list, diccionario_jugador: dict) -> bool:
+    diccionario_auxiliar = {}
+    diccionario_auxiliar["nombre"] = diccionario_jugador["nombre"]
+    diccionario_auxiliar["puntuacion"] = diccionario_jugador["puntuacion"]
+    fecha_actual = (datetime.now()).strftime("%d/%m/%y")
+    diccionario_auxiliar["fecha"] = fecha_actual
+    lista_rankings.append(diccionario_auxiliar)
+
+
+def generar_json(nombre_archivo: str, lista: list) -> bool:
+    if type(lista) == list and len(lista) > 0:
+        with open(nombre_archivo, "w") as archivo:
+            json.dump(lista, archivo, indent=4)
+            retorno = True
+    else:
+        retorno = False
+    return retorno
+
+
+def ordenar_puntaciones(lista_rankings: list, criterio: str):
+    for i in range(len(lista_rankings)-1):
+        for j in range(i+1, len(lista_rankings)):
+            if (lista_rankings[i][criterio] < lista_rankings[j][criterio]):
+                auxiliar = lista_rankings[i]
+                lista_rankings[i] = lista_rankings[j]
+                lista_rankings[j] = auxiliar
+
+
+def mostrar_rankings(lista_rankings: list) -> bool:
+    if len(lista_rankings) > 0:
+        print(f"Nombre          Puntuacion          Fecha")
+        for ranking in lista_rankings:
+            print(f"{ranking["nombre"]}          {ranking["puntuacion"]}           {ranking["fecha"]}")
         return True
     else:
         return False
-        

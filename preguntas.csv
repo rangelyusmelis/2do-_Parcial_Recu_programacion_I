@@ -1,5 +1,33 @@
-pregunta,opcion1,opcion2,opcion3,opcion4,respuesta_correcta
-"¿Cuál es la capital de Francia?","Madrid","Roma","París","Berlín","3"
-"¿Cuántos continentes hay en el mundo?","5","6","7","8","3"
-"¿Quién pintó la Mona Lisa?","Vincent van Gogh","Pablo Picasso","Leonardo da Vinci","Claude Monet","3"
-"¿Qué es la gravedad?","Una fuerza que atrae objetos hacia el centro de la Tierra","Un tipo de energía","Un tipo de onda","Un estado de la materia","1"
+Pregunta,Opción 1,Opción 2,Opción 3,Opción 4,Respuesta Correcta
+"¿Cuál es la capital de Francia?",Berlín,Madrid,París,Lisboa,3
+"¿En qué año terminó la Segunda Guerra Mundial?",1939,1945,1950,1960,2
+"¿Quién pintó la Mona Lisa?",Pablo Picasso,Leonardo da Vinci,Van Gogh,Rembrandt,2
+"¿Cuántos continentes existen?",5,6,7,8,3
+"¿Cuál es el océano más grande del mundo?",Atlántico,Índico,Pacífico,Ártico,3
+"¿Quién escribió 'Don Quijote de la Mancha'?",Garcilaso de la Vega,William Shakespeare,Miguel de Cervantes,Jorge Luis Borges,3
+"¿Cuál es el animal terrestre más grande?",Elefante,Rinoceronte,Jirafa,León,1
+"¿En qué país se encuentra la Torre Eiffel?",Italia,Francia,Alemania,España,2
+"¿Cuál es el planeta más cercano al sol?",Venus,Marte,Mercurio,Júpiter,3
+"¿Quién fue el primer hombre en caminar sobre la Luna?",Yuri Gagarin,Neil Armstrong,John Glenn,Edwin Aldrin,2
+"¿Qué instrumento musical tiene 88 teclas?",Guitarra,Piano,Saxofón,Trombón,2
+"¿Qué tipo de animal es Nemo en la película 'Buscando a Nemo'?",Tiburón,Atún,Pez payaso,Medusa,3
+"¿Qué país es conocido por su producción de queso y relojes?",Alemania,Francia,Suecia,Suisca,4
+"¿Cuántos países hay en África?",50,54,60,61,2
+"¿Cuál es la capital de Japón?",Seúl,Beijing,Hanoi,Tokio,4
+"¿En qué continente se encuentra Egipto?",Asia,Europa,África,Oceanía,3
+"¿Qué día se celebra la independencia de los Estados Unidos?",5 de julio,4 de julio,15 de septiembre,1 de enero,2
+"¿Cuál es el elemento químico cuyo símbolo es O?",Oxígeno,Oro,Ozono,Oxido,1
+"¿Quién fue el líder de la Revolución Rusa?",Joseph Stalin,Vladimir Lenin,Leon Trotsky,Nikita Jrushchov,2
+"¿En qué deporte se utiliza un balón ovalado?",Fútbol,Cricket,Rugby,Baloncesto,3
+"¿Qué instrumento musical tiene cuerdas?",Batería,Piano,Guitarra,Violín,3
+"¿Quién es conocido como el 'Rey del Pop'?",Michael Jackson,Elvis Presley,Prince,Bruce Springsteen,1
+"¿Dónde se encuentra el Coliseo Romano?",Roma,Barcelona,París,Venecia,1
+"¿Cuál es la ciudad más poblada del mundo?",Tokio,Nueva York,Shanghái,Seúl,1
+"¿Qué parte del cuerpo humano tiene más huesos?",Mano,Columna vertebral,Pie,Cabeza,3
+"¿Qué día de la semana es conocido como el día de la suerte en la cultura china?",Lunes,Sábado,Domingo,Martes,3
+"¿Qué gas es el principal responsable del cambio climático?",Oxígeno,Nitrógeno,Carbono,Helio,3
+"¿En qué país se originó el sushi?",China,Corea,Japón,Tailandia,3
+"¿Qué personaje de Disney es conocido por su amistad con un muñeco de nieve llamado Olaf?",Elsa,Cenicienta,Blanca Nieves,Rapunzel,1
+"¿En qué continente se encuentra la selva del Amazonas?",Asia,África,América,Oceanía,3
+"¿Cuál es el símbolo químico del hierro?",Fe,Ag,Hg,Au,1
+"¿Qué famoso científico desarrolló la teoría de la relatividad?",Isaac Newton,Albert Einstein,Galileo Galilei,Marie Curie,2
